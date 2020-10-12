@@ -1,0 +1,64 @@
+.layui-form-item {
+	margin-bottom: 0;
+	line-height: 30px;
+}
+
+.layui-form-label {
+	line-height: 30px;
+	padding: 0;
+}
+
+.layui-input,
+.layui-select,
+.layui-textarea {
+	height: 30px;
+}
+
+.layui-input-block {
+	margin-left: 15px;
+	min-height: 30px;
+}
+
+.layui-form-select dl dd.layui-this {
+	background-color: #ED6D00;
+}
+
+.layui-form-checked[lay-skin=primary] i {
+	border-color: #ED6D00 !important;
+	background-color: #ED6D00;
+	color: #fff;
+}
+
+.layui-form-checkbox[lay-skin=primary]:hover i {
+	border-color: #ED6D00;
+	color: #fff;
+}
+
+.layui-form-checked i,
+.layui-form-checked:hover i {
+	color: #ED6D00;
+}
+
+.layui-tab-brief>.layui-tab-title .layui-this {
+	color: #ED6D00;
+}
+
+.layui-tab-brief>.layui-tab-more li.layui-this:after,
+.layui-tab-brief>.layui-tab-title .layui-this:after {
+	border: none;
+	border-radius: 0;
+	border-bottom: 2px solid #ED6D00;
+}
+
+.layui-table,
+.layui-table-view {
+	margin-bottom: 0;
+}
+
+.layui-table-page {
+	overflow-x: auto;
+}
+
+.xm-option-content {
+	max-width: 200px!important;
+}

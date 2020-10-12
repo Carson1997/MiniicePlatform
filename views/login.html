@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../js/public/layui/css/layui.css" />
+		<script src="../js/public/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+
+		<link rel="stylesheet" type="text/css" href="../css/login.css" />
+		<script src="../js/public/md5.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div class="layui-row">
+			<div class="layui-col-md3 layui-col-xs11 kj1">
+				<div class="title">小冰战报系统</div>
+				<form class="layui-form layui-field-box mt15" lay-filter="myform">
+					<div class="layui-form-item">
+						<label class="layui-form-label label"><i class="layui-icon layui-icon-username"></i>用户：</label>
+						<div class="layui-input-block">
+							<input type="text" autocomplete="off" placeholder="请输入用户名" class="layui-input" id="inp1" lay-verify="required"
+							 name="username">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label label"><i class="layui-icon layui-icon-password"></i>密码：</label>
+						<div class="layui-input-block">
+							<input type="password" placeholder="请输入密码" autocomplete="off" class="layui-input" id="inp2" lay-verify="required"
+							 name="password">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn text-right bt1" lay-submit lay-filter="su" id="login">登录</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<!-- <div class="layui-row">
+			<div class="kj">
+				<div class="title">平台系统</div>
+				<form class="layui-form layui-field-box mt15" lay-filter="myform">
+					<div class="layui-form-item">
+						<label class="layui-form-label label">用户：</label>
+						<div class="layui-input-block">
+							<input type="text" autocomplete="off" placeholder="请输入用户名" class="layui-input" id="inp1" lay-verify="required"
+							 name="username">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label label">密码：</label>
+						<div class="layui-input-block">
+							<input type="password" placeholder="请输入密码" autocomplete="off" class="layui-input" id="inp2" lay-verify="required"
+							 name="password">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn text-right bt1" lay-submit lay-filter="su" id="login">登录</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div> -->
+
+		<script src="../js/login.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

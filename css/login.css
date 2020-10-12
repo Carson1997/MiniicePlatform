@@ -1,0 +1,69 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(#e3e8ea, #D8DCDF, #c5a8b5, #616080);
+}
+
+.kj1 {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	height: 300px;
+	/* 	width: 500px; */
+	border-radius: 10px;
+	background: white;
+	box-shadow: 1px 1px 1px #e8e8e8;
+	/* padding: 50px 20px; */
+}
+
+.kj {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	height: 250px;
+	width: 500px;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 1px 1px 1px #e8e8e8;
+	padding: 50px 20px;
+}
+
+.title {
+	text-align: center;
+	color: #FF8B2D;
+	font-size: 30px;
+	letter-spacing: 5px;
+	margin-top: 20px;
+}
+
+.label {
+	background-color: #F1F3F4;
+	color: gray;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
+
+.layui-form-item {
+	margin-bottom: 30px;
+}
+
+.layui-input {
+	color: gray;
+}
+
+.text-right {
+	float: right;
+}
+
+.bt1 {
+	background-color: #FF8B2D;
+}

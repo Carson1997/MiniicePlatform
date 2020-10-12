@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+
+		<link rel="stylesheet" type="text/css" href="../css/home.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/public/public.css" />
+		<script src="../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../layuiadmin/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../layuiadmin/layui/layui.js"></script>
+		<script src="../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="layui-layout-body">
+
+		<div id="LAY_app">
+			<div class="layui-layout layui-layout-admin">
+				<div class="layui-header" style="background-color: #ED6D00!important;">
+					<!-- 头部区域 -->
+					<ul class="layui-nav layui-layout-left">
+						<li class="layui-nav-item layadmin-flexible" lay-unselect>
+							<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩" class=" t-white">
+								<i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item" lay-unselect>
+							<a href="javascript:;" layadmin-event="refresh" title="刷新" class=" t-white">
+								<i class="layui-icon layui-icon-refresh-3"></i>
+							</a>
+						</li>
+					</ul>
+					<ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right" style="padding: 0 10px;">
+						<li class="layui-nav-item" lay-unselect>
+							<a href="javascript:;">
+								<cite class="t-white" id="user"></cite>
+							</a>
+							<dl class="layui-nav-child">
+								<dd layadmin-event="11" style="text-align: center;"><a onclick="logout()">退出</a></dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+
+				<!-- 侧边菜单 -->
+				<div class="layui-side layui-side-menu" style="background-color: white!important;">
+					<div class="layui-side-scroll">
+						<div class="t-white" style="background-color: #ED6D00!important;height: 50px;">
+							<!-- <img src="../img/logo.jpg" style="margin-top: -8px;transform:scale(0.6);" /> -->
+							<!-- <img src="../img/xiaobing.png" style="width: 150px;margin-left: 10px;"> -->
+							
+							<div style="line-height: 50px;text-align: center;font-size: 20px;">小冰战报系统</div>
+						</div>
+
+						<div id="navigation" class="navigation">
+							<!-- <div class="each-navigation">
+								<div class="f-level"><span class="f-level-name">销售</span></div>
+								<div class="s-level" lay-href="sell/shop_all.html"><i class="menu-icon iconfont icon_nav_comprehensive"></i><span
+									 class="s-level-name">店铺整体</span></div>
+								<div class="s-level" lay-href="sell/platform_analysis.html"><i class="menu-icon iconfont icon_nav_allAnalysis"></i><span
+									 class="s-level-name">平台分析</span></div>
+								<div class="s-level" lay-href="sell/goods_detail.html"><i class="menu-icon iconfont icon_nav_shopDetails"></i><span
+									 class="s-level-name">商品明细</span></div>
+								<div class="s-level" lay-href="sell/goods_analysis.html"><i class="menu-icon iconfont icon_nav_allAnalysis"></i><span
+									 class="s-level-name">商品分析</span></div>
+							</div>
+
+							<div class="each-navigation">
+								<div class="f-level"><span class="f-level-name">流量</span></div>
+								<div class="s-level" lay-href="flow/taoxi_source.html"><i class="menu-icon iconfont icon_nav_categoryAnalysis"></i><span
+									 class="s-level-name">淘系来源</span></div>
+								<div class="s-level" lay-href="flow/jd_source.html"><i class="menu-icon iconfont icon_nav_categoryAnalysis"></i><span
+									 class="s-level-name">京东来源</span></div>
+								<div class="s-level" lay-href="flow/sn_source.html"><i class="menu-icon iconfont icon_nav_categoryAnalysis"></i><span
+									 class="s-level-name">苏宁来源</span></div>
+							</div>
+
+							<div class="each-navigation">
+								<div class="f-level"><span class="f-level-name">竞品</span></div>
+								<div class="s-level" lay-href="jingpin/jp_detail.html"><i class="menu-icon iconfont icon_nav_shopDetails"></i><span
+									 class="s-level-name">竞品明细</span></div>
+								<div class="s-level" lay-href="jingpin/jp_analysis.html"><i class="menu-icon iconfont icon_nav_allAnalysis"></i><span
+									 class="s-level-name">竞品分析</span></div>
+							</div>
+
+							<div class="each-navigation">
+								<div class="f-level"><span class="f-level-name">数据上传</span></div>
+								<div class="s-level" lay-href="upload/index.html"><i class="menu-icon layui-icon layui-icon-upload-drag"></i><span
+									 class="s-level-name">数据上传</span></div>
+							    <div class="s-level" lay-href="upload/goods_down.html"><i class="menu-icon iconfont icon_nav_shopDetails"></i><span
+							    	 class="s-level-name">商品下载记录</span></div>
+							</div>
+
+							<div class="each-navigation">
+								<div class="f-level"><span class="f-level-name">用户</span></div>
+								<div class="s-level" lay-href="user/userManage.html"><i class="menu-icon layui-icon layui-icon-username"></i><span class="s-level-name">用户管理</span></div>
+								<div class="s-level" lay-href="user/shop_set.html"><i class="menu-icon layui-icon layui-icon-set"></i><span class="s-level-name">店铺设置</span></div>
+							</div>
+ -->
+						</div>
+
+					</div>
+				</div>
+
+				<!-- 主体内容 -->
+				<div class="layui-body" id="LAY_app_body">
+					<div class="layadmin-tabsbody-item layui-show">
+						<iframe frameborder="0" class="layadmin-iframe"></iframe>
+					</div>
+				</div>
+
+
+				<!-- 辅助元素，一般用于移动设备下遮罩 -->
+				<div class="layadmin-body-shade" layadmin-event="shade"></div>
+			</div>
+		</div>
+
+	</body>
+
+	<script src="../js/home.js"></script>
+</html>

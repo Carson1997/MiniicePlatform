@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>平台分析</title>
+		<link rel="stylesheet" type="text/css" href="../../js/public/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../js/public/element-ui/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/public/zjl_public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/sell/comprehensive.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/public/public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/layui_me.css" />
+
+		<script src="../../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/public/xm-select/xm-select.js"></script>
+
+		<!-- 日期有关 -->
+		<script src="../../js/public/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/element-ui/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/publicDataHandle.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- echarts -->
+		<script src="../../js/public/echarts/echarts.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- 折线图 -->
+		<script src="../../js/public/echarts/polygonal.js" type="text/javascript" charset="utf-8"></script>
+
+		<style>
+			xm-select > .xm-body .xm-option-content {
+				overflow: inherit;
+			}
+		</style>
+
+	</head>
+	<body class="conbody">
+
+		<div id="vue">
+
+			<div class="layui-row fixedTitle">
+				<i class="tao-header-icon iconfont icon_nav_allAnalysis"></i> <span class="tao-header-name">平台分析</span>
+
+				<div class="layui-row bg-white  layui-col-space10" style="padding: 0 15px;">
+					<div class="layui-col-md1" style="width: 300px;">
+						<label class="layui-form-label">日期区间：</label>
+						<div class="dateAll floatLeft">
+							<div class="dateArea">
+								<span class="word wordClick" data-type="date" v-on:click="selectLis('daterange', 1)">日</span>
+								<span class="word" data-type="week" v-on:click="selectLis('week', 7)">周</span>
+								<span class="word" data-type="month" v-on:click="selectLis('monthrange', 31)">月</span>
+								<div class="clear"></div>
+							</div>
+							<div class="datePicker" id="datePicker1">
+								<el-date-picker :picker-options="pickOption" popper-class="aaa" v-model="daterange" class="dateInput" type="daterange"
+								 value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+								</el-date-picker>
+								<!-- 	<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+								 type="week" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+								 style="width: 70px;height: 0;"> -->
+								<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+								 type="daterange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+								 style="width: 70px;height: 0;">
+								</el-date-picker>
+								<el-date-picker :picker-options="pickOptionMonth" id="el-monthrange" popper-class="aaa" v-model="monthrange"
+								 class="dateInput" type="monthrange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期"
+								 v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+								</el-date-picker>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="layui-col-md1 layui-col-xs12" style="width: 250px;">
+						<div class="selectShow floatLeft">
+							<span class="iconfont calendar icon_calendar_icon"></span>
+							<span class="calendar-msg">{{ selectDateShow }}</span>
+						</div>
+					</div>
+
+					<div class="layui-col-md2">
+						<label class="layui-form-label">平台：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-platform" class="xm-select-demo"></div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="titleIcon" @click="clickTitleIcon">
+					<i class="layui-icon layui-icon-up"></i>
+				</div>
+			</div>
+
+			<div class="layui-fluid">
+
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+
+							<div class="layui-row layui-col-space15">
+								<div class="layui-col-md2">
+									<span class="myTitle">平台趋势</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card layui-row" style="border-right: 1px solid #CCCCCC;">
+							<div class="layui-col-md3 layui-col-xs6 myBorderHeZi selectHezi" data="payment_amt">
+								<div class="heZiText">支付金额(元)</div>
+								<div class="heZiNumber" v-for="(i,d) in payment_amt">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="payment_qty">
+								<div class="heZiText">支付件数(件)</div>
+								<div class="heZiNumber" v-for="(i,d) in payment_qty">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="visitors">
+								<div class="heZiText">访客数(人)</div>
+								<div class="heZiNumber" v-for="(i,d) in visitors">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="shopping_cart">
+								<div class="heZiText">加购人数(人)</div>
+								<div class="heZiNumber" v-for="(i,d) in shopping_cart">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="payment_collect_qty">
+								<div class="heZiText">支付买家数(人)</div>
+								<div class="heZiNumber" v-for="(i,d) in payment_collect_qty">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="pay_conversion_rate">
+								<div class="heZiText">支付转化率(%)</div>
+								<div class="heZiNumber" v-for="(i,d) in pay_conversion_rate">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="customer_price">
+								<div class="heZiText">客单价(元)</div>
+								<div class="heZiNumber" v-for="(i,d) in customer_price">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="unit_price">
+								<div class="heZiText">件单价(元)</div>
+								<div class="heZiNumber" v-for="(i,d) in unit_price">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+
+							<div class="echarts_div layim-hide tips">
+								<div style="margin:auto;width: 100px;position: absolute;left: 0;right: 0;top:50px;">
+									<img src="../../img/no.png" style="width: 100%;" />
+									<div style="text-align: center;">请先选择平台</div>
+								</div>
+							</div>
+
+							<div class="echarts_div" id="echart_sellTrend"></div>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="layui-row mt15">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+							<span class="myTitle">平台明细</span>
+							<button class="layui-btn layui-btn-sm" id="dl_table_platform">导出</button>
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+
+							<div class="layui-form layui-form-item">
+								<div class="layui-input-block">
+									<input type="checkbox" name="" title="支付金额" lay-skin="primary" checked lay-filter="dx0" value="1">
+									<input type="checkbox" name="" title="支付件数" lay-skin="primary" checked lay-filter="dx0" value="2">
+									<input type="checkbox" name="" title="访客数" lay-skin="primary" checked lay-filter="dx0" value="3">
+									<input type="checkbox" name="" title="加购人数" lay-skin="primary" checked lay-filter="dx0" value="4">
+									<input type="checkbox" name="" title="支付买家数" lay-skin="primary" checked lay-filter="dx0" value="5">
+									<input type="checkbox" name="" title="支付转化率" lay-skin="primary" checked lay-filter="dx0" value="6">
+									<input type="checkbox" name="" title="客单价" lay-skin="primary" checked lay-filter="dx0" value="7">
+									<input type="checkbox" name="" title="件单价" lay-skin="primary" checked lay-filter="dx0" value="8">
+								</div>
+							</div>
+
+							<table id="table_platform" lay-filter="table_platform"> </table>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="layui-row mt15">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+							<span class="myTitle">品牌明细</span>
+							<button class="layui-btn layui-btn-sm" id="dl_table_brand">导出</button>
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+
+							<div class="layui-form layui-form-item">
+								<div class="layui-input-block">
+									<input type="checkbox" name="" title="支付金额" lay-skin="primary" checked lay-filter="dx1" value="1">
+									<input type="checkbox" name="" title="支付件数" lay-skin="primary" checked lay-filter="dx1" value="2">
+									<input type="checkbox" name="" title="访客数" lay-skin="primary" checked lay-filter="dx1" value="3">
+									<input type="checkbox" name="" title="加购人数" lay-skin="primary" checked lay-filter="dx1" value="4">
+									<input type="checkbox" name="" title="支付买家数" lay-skin="primary" checked lay-filter="dx1" value="5">
+									<input type="checkbox" name="" title="支付转化率" lay-skin="primary" checked lay-filter="dx1" value="6">
+									<input type="checkbox" name="" title="客单价" lay-skin="primary" checked lay-filter="dx1" value="7">
+									<input type="checkbox" name="" title="件单价" lay-skin="primary" checked lay-filter="dx1" value="8">
+								</div>
+							</div>
+
+							<table id="table_brand" lay-filter="table_brand"> </table>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="layui-row mt15">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+							<span class="myTitle">类目明细</span>
+							<button class="layui-btn layui-btn-sm" id="dl_table_category">导出</button>
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+
+							<div class="layui-form layui-form-item">
+								<div class="layui-input-block">
+									<input type="checkbox" name="" title="支付金额" lay-skin="primary" checked lay-filter="dx2" value="1">
+									<input type="checkbox" name="" title="支付件数" lay-skin="primary" checked lay-filter="dx2" value="2">
+									<input type="checkbox" name="" title="访客数" lay-skin="primary" checked lay-filter="dx2" value="3">
+									<input type="checkbox" name="" title="加购人数" lay-skin="primary" checked lay-filter="dx2" value="4">
+									<input type="checkbox" name="" title="支付买家数" lay-skin="primary" checked lay-filter="dx2" value="5">
+									<input type="checkbox" name="" title="支付转化率" lay-skin="primary" checked lay-filter="dx2" value="6">
+									<input type="checkbox" name="" title="客单价" lay-skin="primary" checked lay-filter="dx2" value="7">
+									<input type="checkbox" name="" title="件单价" lay-skin="primary" checked lay-filter="dx2" value="8">
+								</div>
+							</div>
+
+							<table id="table_category" lay-filter="table_category"> </table>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="layui-row mt15">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+							<span class="myTitle">店铺明细</span>
+							<button class="layui-btn layui-btn-sm" id="dl_table_shop">导出</button>
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+
+							<div class="layui-form layui-form-item">
+								<div class="layui-input-block">
+									<input type="checkbox" name="" title="支付金额" lay-skin="primary" checked lay-filter="dx3" value="1">
+									<input type="checkbox" name="" title="支付件数" lay-skin="primary" checked lay-filter="dx3" value="2">
+									<input type="checkbox" name="" title="访客数" lay-skin="primary" checked lay-filter="dx3" value="3">
+									<input type="checkbox" name="" title="加购人数" lay-skin="primary" checked lay-filter="dx3" value="4">
+									<input type="checkbox" name="" title="支付买家数" lay-skin="primary" checked lay-filter="dx3" value="5">
+									<input type="checkbox" name="" title="支付转化率" lay-skin="primary" checked lay-filter="dx3" value="6">
+									<input type="checkbox" name="" title="客单价" lay-skin="primary" checked lay-filter="dx3" value="7">
+									<input type="checkbox" name="" title="件单价" lay-skin="primary" checked lay-filter="dx3" value="8">
+								</div>
+							</div>
+
+							<table id="table_shop" lay-filter="table_shop"></table>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="myFoot">广东小冰火人网络科技有限公司 版权所有</div>
+
+		</div>
+	</body>
+
+	<script src="../../jsEn/sell/platform_analysis.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- 	<script src="../../js/sell/platform_analysis_en.js" type="text/javascript" charset="utf-8"></script> -->
+
+</html>

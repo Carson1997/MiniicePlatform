@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../js/public/element-ui/index.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/public.css" />
+
+		<!-- 日期有关 -->
+		<script src="../../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/element-ui/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+
+			.card {
+			  display: inline-block;
+			  margin: 10px;
+			  background: #fff;
+			  padding: 15px;
+			  min-width: 200px;
+			  box-shadow: 0 3px 5px #ddd;
+			  color: #555;
+			}
+			.card .box {
+			  width: 100px;
+			  height: 100px;
+			  margin: auto;
+			  background: #ddd;
+			  cursor: pointer;
+			  box-shadow: 0 0 5px #ccc inset;
+			}
+			.card .box .fill {
+			  width: 100px;
+			  height: 100px;
+			  position: relative;
+			  background: #03A9F4;
+			  opacity: .5;
+			  box-shadow: 0 0 5px #ccc;
+			  -webkit-transition: 0.3s;
+			  transition: 0.3s;
+			}
+			
+			.translateX:hover .fill {
+			  -webkit-transform: translateX(45px);
+			  transform: translateX(45px);
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="vue">
+
+			<el-date-picker v-model="d3" type="month" :picker-options="pickOptionMonth" placeholder="选择日期">
+			</el-date-picker>
+
+			<div class="dateAll floatLeft">
+				<div class="dateArea">
+					<span class="word wordClick" data-type="date" v-on:click="selectLis('daterange', 1)">日</span>
+					<span class="word" data-type="week" v-on:click="selectLis('week', 7)">周</span>
+					<span class="word" data-typea="month" v-on:click="selectLis('monthrange', 31)">月</span>
+					<div class="clear"></div>
+				</div>
+				<div class="datePicker" id="datePicker1">
+					<!-- <el-date-picker :picker-options="pickOption" popper-class="aaa" v-model="daterange" class="dateInput" type="daterange"
+					 value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+					</el-date-picker>
+					<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+					 type="daterange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+					 style="width: 70px;height: 0;">
+					</el-date-picker>
+					<el-date-picker :picker-options="pickOption" id="el-monthrange" popper-class="aaa" v-model="monthrange" class="dateInput"
+					 type="monthrange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+					 style="width: 70px;height: 0;">
+					</el-date-picker> -->
+
+					<el-date-picker :picker-options="pickOption" popper-class="aaa" class="dateInput" value-format="yyyy-MM-dd" format="yyyy-MM-dd"
+					 v-on:change="dateClick($event)" v-model="d1" type="date" placeholder="选择日期" id="d1" style="width: 70px;height: 0;">
+					</el-date-picker>
+					<el-date-picker :picker-options="pickOption" popper-class="aaa" class="dateInput" value-format="yyyy-MM-dd" format="yyyy-MM-dd"
+					 v-on:change="dateClick($event)" v-model="d2" type="date" placeholder="选择日期" id="d2" style="width: 70px;height: 0;">
+					</el-date-picker>
+					<el-date-picker :picker-options="pickOptionMonth" popper-class="aaa" class="dateInput" value-format="yyyy-MM-dd" format="yyyy-MM-dd"
+					 v-on:change="dateClick($event)" v-model="d3" type="month" placeholder="选择日期" id="d3" style="width: 70px;height: 0;">
+					</el-date-picker>
+
+
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<div class="selectShow floatLeft">
+				<span class="iconfont calendar icon_calendar_icon"></span>
+				<span class="calendar-msg">{{ selectDateShow }}</span>
+			</div>
+		</div>
+
+		<!-- <div class="card">
+  <div class="box translateX">
+    <div class="fill"></div>
+  </div>
+  <p>translateX(45px)</p>
+</div> -->
+
+
+	</body>
+</html>
+
+<script>
+	var vm = new Vue({
+		el: '#vue',
+		data: {
+			d1: '',
+			d2: '',
+			d3: '',
+
+			send: {
+				date: '2020-01-01_2020-06-30',
+				date_type: '1',
+			},
+
+			// 日期控制的变量  开始 ============================
+			time_data: {
+				start_time: "",
+				end_time: ""
+			},
+			dateValue: '',
+			dateType: "daterange",
+			selectDate: '---',
+			defaultValue: '',
+			dataType: 1,
+			pickOption: {
+				firstDayOfWeek: 1,
+				disabledDate: function(time) {}
+			},
+			selectDateShow: '2020-01-01_2020-06-30',
+			daterange: [],
+			monthrange: [],
+			
+			pickOptionMonth: {
+				firstDayOfWeek: 1,
+				disabledDate: function(time) {}
+			},
+			// 日期控制的变量  结束 ============================
+		},
+
+		mounted() {
+			this.mergeHandle()
+		},
+
+		methods: {
+
+			// 日周月被点击  打开日期选择框
+			selectLis: function(type, dataType) {
+				this.dataType = dataType;
+				var data = this.time_data;
+
+				if (this.dateType != type) {
+					this.dateValue = '';
+					this.dateType = type;
+				}
+
+				if (type == 'daterange') {
+					$('#d1').focus()
+					// $('#datePicker1').find('.el-date-editor--daterange')[0].click();
+				}
+				if (type == 'week') {
+					$('#d2').focus()
+					// $('#datePicker1').find('.el-date-editor--daterange')[1].click();
+					$('.available').removeClass('in-range start-date');
+					$('.available').removeClass('in-range end-date');
+				}
+				if (type == 'monthrange') {
+					$('#d3').focus()
+					// $('#datePicker1').find('.el-date-editor--monthrange').click()
+				}
+
+				limitDayBegin = new Date('2020-04-01'.replace('-', '/')).getTime();
+				limitDayEnd = new Date('2020-07-31'.replace('-', '/')).getTime();
+				//限制日，周
+				this.pickOption.disabledDate = function(time) {
+					if (limitDayBegin > time.getTime() || limitDayEnd < time.getTime()) {
+						return time;
+					}
+				}
+			},
+
+			// 时间被点击
+			dateClick: function(value) {
+				$('.wordClick').removeClass('wordClick');
+
+				if (this.dateType == 'week') {
+					$($('.word')[1]).addClass('wordClick');
+					this.send.date_type = 2;
+					var start = moment(value[0]).isoWeekday(1).week(moment(value[0]).isoWeekday(1).week()).startOf('isoweek').format(
+						'YYYY-MM-DD');
+					var end = moment(value[1]).isoWeekday(1).week(moment(value[1]).isoWeekday(1).week()).endOf('isoweek').format(
+						'YYYY-MM-DD');
+					this.selectDateShow = start + '_' + end;
+					this.send.date = this.selectDateShow;
+					this.dateValue = this.selectDateShow;
+				}
+				if (this.dateType == 'daterange') {
+					$($('.word')[0]).addClass('wordClick');
+					this.selectDateShow = value[0] + '_' + value[1];
+					this.send.date = this.selectDateShow;
+					this.send.date_type = 1;
+				}
+				if (this.dateType == 'monthrange') {
+					$($('.word')[2]).addClass('wordClick');
+					var start = moment(value[0]).month(moment(value[0]).month()).startOf('month').format('YYYY-MM-DD');
+					var end = moment(value[1]).month(moment(value[1]).month()).endOf('month').format('YYYY-MM-DD');
+					var show = start + '_' + end;
+					this.selectDateShow = value[0].substr(0, 7) + '_' + value[1].substr(0, 7);
+					this.send.date = show;
+					this.send.date_type = 3;
+				}
+
+				this.daterange = '';
+				this.dateValue = '';
+				this.monthrange = '';
+			},
+
+			mergeHandle: function() {
+				var data = {
+					end_time: "2020-08-23",
+					start_time: "2020-03-30"
+				}
+				this.defaultValue = data.end_time;
+				limitDayBegin = new Date(data.start_time.replace('-', '/')).getTime();
+				limitDayEnd = new Date(data.end_time.replace('-', '/')).getTime();
+				//限制日，周
+				this.pickOption.disabledDate = function(time) {
+					if (limitDayBegin > time.getTime() || limitDayEnd < time.getTime()) {
+						return time;
+					}
+				}
+				//限制月
+				var monthStart = moment(limitDayBegin).startOf('month').format('YYYY-MM-DD');
+				var dateStart = limitDayBegin;
+				if (data.start_time != monthStart) {
+					var date1 = moment(data.start_time).subtract(-1, 'months').format('YYYY-MM-DD');
+					dateStart = moment(date1).startOf('month').format('YYYY/MM/DD')
+					dateStart = new Date(dateStart).getTime();
+				}
+
+				var monthLast = moment(limitDayEnd).endOf('month').format('YYYY-MM-DD');
+				var dateEnd = limitDayEnd;
+				if (data.end_time != monthLast) {
+					var date1 = moment(data.end_time).subtract(1, 'months').format('YYYY-MM-DD');
+					dateEnd = moment(date1).endOf('month').format('YYYY/MM/DD')
+					dateEnd = new Date(dateEnd).getTime();
+				}
+				this.pickOptionMonth.disabledDate = function(time) {
+					if (dateEnd > dateStart) {
+						if (dateStart > time.getTime() || dateEnd < time.getTime()) {
+							return time;
+						}
+					} else {
+						return time;
+					}
+				}
+			},
+
+		}
+	})
+
+
+
+	// let P1 = new Promise(function(resolve, reject) {
+	// 	$.ajax({
+	// 		url: url_shop,
+	// 		type: 'get',
+	// 		dataType: 'json',
+	// 		timeout: 10000,
+	// 		success: function(res) {
+	// 			checkStatus(res, function() {
+	// 				resolve(res.data)
+	// 			});
+	// 		},
+	// 		error: function() {
+	// 			layer.alert('请求失败')
+	// 		}
+	// 	});
+	// })
+
+	// let P2 = new Promise(function(resolve, reject) {
+	// 	$.ajax({
+	// 		url: url_proSelect,
+	// 		type: 'get',
+	// 		dataType: 'json',
+	// 		timeout: 10000,
+	// 		success: function(res) {
+	// 			checkStatus(res, function() {
+	// 				resolve(res.data)
+	// 			});
+	// 		},
+	// 		error: function() {
+	// 			layer.alert('请求失败')
+	// 		}
+	// 	});
+	// })
+
+	// Promise.all([P1, P2]).then(function(results) {
+	// 	console.log(results)
+	// })
+</script>

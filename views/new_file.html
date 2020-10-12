@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../js/public/layui/css/layui.css"/>
+		<script src="../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.card {
+			width: 200px;
+			height: 200px;
+			position: relative;
+		}
+
+		.box {
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+
+		.left {
+			float: left;
+			width: 20%;
+			height: 100%;
+			background: cadetblue;
+			transition: width 0.2s;
+			-webkit-transition: width 0.2s;
+		}
+
+		.right {
+			float: left;
+			width: 80%;
+			height: 100%;
+			background-color: skyblue;
+			transition: width 0.2s;
+			-webkit-transition: width 0.2s;
+		}
+
+		.g1 {
+			width: 100%;
+		}
+
+		.g2 {
+			width: 0;
+		}
+	</style>
+	<body>
+		<div class="card">
+			<div class="box">
+				<div class="left">左边</div>
+				<div class="right">右边</div>
+			</div>
+		</div>
+
+		<button onclick="aa()">123</button>
+
+	</body>
+
+	<script>
+		function aa() {
+			var className = $('.right').attr('class');
+			if (className.indexOf('g1') == -1) {
+				$('.right').addClass('g1')
+				$('.left').addClass('g2')
+			} else {
+				$('.right').removeClass('g1')
+				$('.left').removeClass('g2')
+			}
+		}
+		
+		
+	</script>
+
+</html>

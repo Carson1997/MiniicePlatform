@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>淘系流量来源</title>
+		<link rel="stylesheet" type="text/css" href="../../js/public/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../js/public/element-ui/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/public/zjl_public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/sell/comprehensive.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/public/public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/layui_me.css" />
+
+		<script src="../../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../layuiadmin/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/public/xm-select/xm-select.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- 日期有关 -->
+		<script src="../../js/public/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/element-ui/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/publicDataHandle.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- echarts -->
+		<script src="../../js/public/echarts/echarts.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- 折线图 -->
+		<script src="../../js/public/echarts/polygonal.js" type="text/javascript" charset="utf-8"></script>
+
+		<style>
+			xm-select > .xm-body .xm-option-content {
+		overflow: inherit;
+	}
+</style>
+
+	</head>
+	<body class="conbody">
+
+		<div id="vue">
+
+			<div class="layui-row fixedTitle">
+				<i class="tao-header-icon iconfont icon_nav_categoryAnalysis"></i> <span class="tao-header-name">淘系流量来源</span>
+
+				<div class="layui-row bg-white  layui-col-space10" style="padding: 0 15px;">
+					<div class="layui-col-md1" style="width: 300px;">
+						<label class="layui-form-label">日期区间：</label>
+						<div class="dateAll floatLeft">
+							<div class="dateArea">
+								<span class="word wordClick" data-type="date" v-on:click="selectLis('daterange', 1)">日</span>
+								<span class="word" data-type="week" v-on:click="selectLis('week', 7)">周</span>
+								<span class="word" data-type="month" v-on:click="selectLis('monthrange', 31)">月</span>
+								<div class="clear"></div>
+							</div>
+							<div class="datePicker" id="datePicker1">
+								<el-date-picker :picker-options="pickOption" popper-class="aaa" v-model="daterange" class="dateInput" type="daterange"
+								 value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+								</el-date-picker>
+								<!-- 	<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+								 type="week" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+								 style="width: 70px;height: 0;"> -->
+								<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+								 type="daterange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+								 style="width: 70px;height: 0;">
+								</el-date-picker>
+								<el-date-picker :picker-options="pickOptionMonth" id="el-monthrange" popper-class="aaa" v-model="monthrange"
+								 class="dateInput" type="monthrange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期"
+								 v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+								</el-date-picker>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="layui-col-md1 layui-col-xs12" style="width: 250px;">
+						<div class="selectShow floatLeft">
+							<span class="iconfont calendar icon_calendar_icon"></span>
+							<span class="calendar-msg">{{ selectDateShow }}</span>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs6" v-show="xm_goods1">
+						<label class="layui-form-label">商品1：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-goods1" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs6" v-show="xm_goods2">
+						<label class="layui-form-label">商品2：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-goods2" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs6" v-show="xm_goods3">
+						<label class="layui-form-label">商品3：</label>
+						<div class="layui-input-inline  layui-col-xs8">
+							<div id="xm-goods3" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs6">
+						<label class="layui-form-label">终端：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-eq" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs6" v-show="xm_shop" style="width: 320px;">
+						<label class="layui-form-label">店铺：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-shop" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs6" v-show="xm_brand">
+						<label class="layui-form-label">品牌：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-brand" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md4 layui-col-xs12" v-show="xm_category">
+						<label class="layui-form-label">类目：</label>
+						<div class="layui-input-inline layui-col-xs3">
+							<div id="xm-category1" class="xm-select-demo"></div>
+						</div>
+						<div class="layui-input-inline layui-col-xs3 ml15">
+							<div id="xm-category2" class="xm-select-demo"></div>
+						</div>
+						<div class="layui-input-inline layui-col-xs3 ml15">
+							<div id="xm-category3" class="xm-select-demo"></div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="layui-card">
+
+							<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+								<ul class="layui-tab-title" style="border: 0;">
+									<li class="layui-this" @click="changeTap(1)">店铺流量来源</li>
+									<li @click="changeTap(2)">商品流量来源明细</li>
+									<li @click="changeTap(3)">商品流量来源分析</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="titleIcon" @click="clickTitleIcon">
+					<i class="layui-icon layui-icon-up"></i>
+				</div>
+			</div>
+
+			<div class="layui-fluid">
+
+				<!-- 淘宝来源 -->
+				<div class="layui-row" v-show="tap == 1">
+					<div class="layui-card">
+						<div class="layui-row divPad myBorder">
+							<div class="layui-col-md2 layui-col-xs6">
+								<span class="myTitle">一级流量来源趋势</span>
+							</div>
+
+							<div class="layui-col-md2 layui-col-md-offset8 layui-col-xs8">
+								<!-- <div class="layui-form">
+									<div class="layui-input-inline floatRight">
+										<div id="xm-1flowTrend" class="xm-select-demo width200"></div>
+									</div>
+								</div> -->
+								<div style="width: 200px;" class="floatRight">
+									<label class="layui-form-label floatLeft">指标：</label>
+									<div id="xm-1flowTrend" class="xm-select-demo floatRight" style="width: 150px;"></div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="layui-row myBorder" style="border-top: 0;">
+							<div class="echarts_div" id="echart_1flowTrend"></div>
+						</div>
+					</div>
+
+					<div class="layui-card">
+						<div class="divPad myBorder">
+							<div class="layui-row layui-col-space10">
+								<div class="layui-col-md3 layui-col-xs6">
+									<span class="myTitle">细分流量来源趋势</span>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs12 layui-col-md-offset1 layui-hide">
+									<div class="layui-form">
+										<label class="layui-form-label">对比店铺：</label>
+										<div class="layui-input-inline layui-col-xs8">
+											<div id="xm-select1" class="xm-select-demo"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-lg2 layui-col-lg-offset3">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select4" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">指标：</label>
+										<div id="xm-select4" class="xm-select-demo floatRight" style="width: 150px;"></div>
+									</div>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-lg2">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select2" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">一级来源：</label>
+										<div id="xm-select2" class="xm-select-demo floatRight" style="width: 130px;"></div>
+									</div>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-lg2">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select3" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">二级来源：</label>
+										<div id="xm-select3" class="xm-select-demo floatRight" style="width: 130px;"></div>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="layui-row myBorder" style="border-top: 0;">
+
+							<div class="echarts_div layim-hide tips" style="position: relative;">
+								<div style="margin:auto;width: 100px;position: absolute;left: 0;right: 0;top:50px;">
+									<img src="../../img/no.png" style="width: 100%;" />
+									<div style="text-align: center;">请先选择店铺</div>
+								</div>
+							</div>
+
+							<div class="echarts_div" id="echart_2flowTrend"></div>
+						</div>
+					</div>
+
+					<div class="layui-card">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<div class="layui-card myBorder divPad">
+									<span class="myTitle">店铺流量来源明细</span>
+									<button class="layui-btn layui-btn-sm" id="dl_sourceDetail">导出</button>
+								</div>
+							</div>
+
+							<div class="layui-col-md12">
+								<div class="layui-card myBorder" style="border-top: 0;">
+									<div class="layui-form layui-form-item">
+										<div class="layui-input-block">
+											<input type="checkbox" name="" title="支付金额" lay-skin="primary" checked lay-filter="dx1" value="1">
+											<input type="checkbox" name="" title="访客数" lay-skin="primary" checked lay-filter="dx1" value="2">
+											<input type="checkbox" name="" title="加购人数" lay-skin="primary" checked lay-filter="dx1" value="3">
+											<input type="checkbox" name="" title="支付买家数" lay-skin="primary" checked lay-filter="dx1" value="4">
+											<input type="checkbox" name="" title="支付转化率" lay-skin="primary" checked lay-filter="dx1" value="5">
+											<input type="checkbox" name="" title="客单价" lay-skin="primary" checked lay-filter="dx1" value="6">
+										</div>
+									</div>
+
+									<table id="table_source_detail" lay-filter="table_source_detail"> </table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<!-- 商品来源明细 -->
+				<div class="layui-row" v-show="tap == 2">
+					<div class="layui-card">
+						<div class="divPad myBorder">
+							<div class="layui-row layui-col-space10">
+								<div class="layui-col-md3 layui-col-xs12">
+									<span class="myTitle">商品流量来源明细</span>
+									<button class="layui-btn layui-btn-sm" id="dl_flowDetail">导出</button>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-md-offset3 layui-col-lg2 layui-col-lg-offset5">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select-s1" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">流量来源：</label>
+										<div id="xm-select-s1" class="xm-select-demo floatRight" style="width: 130px;"></div>
+									</div>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-lg2">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select-s2" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">指标：</label>
+										<div id="xm-select-s2" class="xm-select-demo floatRight" style="width: 150px;"></div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="layui-row myBorder" style="border-top: 0;">
+							<table id="table_shop_source_detail" lay-filter="table_shop_source_detail"></table>
+						</div>
+					</div>
+
+				</div>
+
+
+				<!-- 商品来源分析 -->
+				<div class="layui-row" v-show="tap == 3">
+
+					<div class="layui-card">
+						<div class="divPad myBorder">
+							<div class="layui-row layui-col-space10">
+								<div class="layui-col-md3 layui-col-xs12">
+									<span class="myTitle">单个或多个商品流量来源分析</span>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-md-offset3 layui-col-lg2 layui-col-lg-offset5">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select-sa1" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">流量来源：</label>
+										<div id="xm-select-sa1" class="xm-select-demo floatRight" style="width: 120px;"></div>
+									</div>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-lg2">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select-sa2" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">指标：</label>
+										<div id="xm-select-sa2" class="xm-select-demo floatRight" style="width: 150px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="layui-row myBorder" style="border-top: 0;">
+							<div class="echarts_div layim-hide tips" style="position: relative;">
+								<div style="margin:auto;width: 100px;position: absolute;left: 0;right: 0;top:50px;">
+									<img src="../../img/no.png" style="width: 100%;" />
+									<div style="text-align: center;">请先选择商品</div>
+								</div>
+							</div>
+
+							<div class="echarts_div" id="echart_sourceTrend"></div>
+						</div>
+					</div>
+
+					<div class="layui-card">
+						<div class="divPad myBorder">
+							<div class="layui-row layui-col-space10">
+								<div class="layui-col-md3 layui-col-xs12">
+									<span class="myTitle">单个或多个商品流量来源明细</span>
+									<button class="layui-btn layui-btn-sm" id="dl_sourceAnaysis">导出</button>
+								</div>
+
+								<div class="layui-col-md2 layui-col-xs6 layui-col-md-offset7" v-show="sel_goods3.length > 1">
+									<div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select-sd" class="xm-select-demo"></div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="layui-row myBorder" style="border-top: 0;">
+							<div class="layui-form layui-form-item" v-show="sel_goods3.length == 1">
+								<div class="layui-input-block">
+									<input type="checkbox" name="" title="支付金额" lay-skin="primary" checked lay-filter="dx3" value="1">
+									<input type="checkbox" name="" title="访客数" lay-skin="primary" checked lay-filter="dx3" value="2">
+									<input type="checkbox" name="" title="加购人数" lay-skin="primary" checked lay-filter="dx3" value="3">
+									<input type="checkbox" name="" title="支付买家数" lay-skin="primary" checked lay-filter="dx3" value="4">
+									<input type="checkbox" name="" title="支付转化率" lay-skin="primary" checked lay-filter="dx3" value="5">
+									<input type="checkbox" name="" title="客单价" lay-skin="primary" checked lay-filter="dx3" value="6">
+								</div>
+							</div>
+
+							<table id="table_sda1" lay-filter="table_sda1"> </table>
+						</div>
+					</div>
+
+					<div style="height: 125px;"></div>
+
+				</div>
+
+			</div>
+			
+			<div class="myFoot">广东小冰火人网络科技有限公司 版权所有</div>
+		</div>
+	</body>
+
+
+	<script src="../../js/flow/taoxi/taoxi_source.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/flow/taoxi/taoxi_detail.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/flow/taoxi/taoxi_analysis.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../../js/flow/taoxi/en.js" type="text/javascript" charset="utf-8"></script> -->
+
+</html>

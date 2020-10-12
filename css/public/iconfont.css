@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 1263956 */
+  src: url('//at.alicdn.com/t/font_1263956_k3uftrotyhj.eot');
+  src: url('//at.alicdn.com/t/font_1263956_k3uftrotyhj.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1263956_k3uftrotyhj.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1263956_k3uftrotyhj.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1263956_k3uftrotyhj.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1263956_k3uftrotyhj.svg#iconfont') format('svg');
+}
+
+.iconfont {
+	font-family: "iconfont" !important;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*圆点*/
+.icon_circular:before{
+	content: '\e657';
+}
+
+/*上升*/
+.icon_data_up:before{
+	content: '\e635';
+	color: red;
+}
+
+/*下降*/
+.icon_data_down:before{
+	content: '\e658';
+	color: #17B908;
+}
+
+/*向左*/
+.icon_box_toleft:before{
+	content: '\e65d';
+}
+
+/*向右*/
+.icon_box_toright:before{
+	content: '\e623';
+}
+
+/*我的店铺*/
+.icon_myshopicon:before{
+	content: '\e650';
+}
+
+/*金钱*/
+.icon_money:before{
+	content: '\e60a';
+}
+
+/*日历*/
+.icon_calendar_icon:before{
+	content: '\e6e5';
+}
+
+/*关闭*/
+.icon_close:before{
+	content: '\e654';
+}
+
+/*综合看板*/
+.icon_nav_comprehensive:before{
+	content: '\e642';
+}
+
+/*市场排行*/
+.icon_nav_marketRanking:before{
+	content: '\e66e';
+}
+
+/*店铺明细*/
+.icon_nav_shopDetails:before{
+	content: '\e689';
+}
+
+/*商品明细*/
+.icon_nav_inventory:before{
+	content: '\e684';
+}
+
+/*客服明细*/
+.icon_nav_service:before{
+	content: '\e616';
+}
+
+/*地区分布*/
+.icon_nav_map:before{
+	content: '\e65b';
+}
+
+/*类目洞察*/
+.icon_nav_categoryInsight:before{
+	content: '\e720';
+}
+
+
+/*类目分析*/
+.icon_nav_categoryAnalysis:before{
+	content: '\e736';
+}
+
+
+/*品牌分析*/
+.icon_nav_allAnalysis:before{
+	content: '\e6c7';
+}
+
+/*品牌对比*/
+.icon_nav_allContrast:before{
+	content: '\e607';
+}
+
+/*导出*/
+.icon_export:before{
+	content: '\e70f';
+}
+
+/* 菜单 */
+.icon_menu:before{
+	content: '\e655';
+}
+
+/*设置*/
+.icon_setting:before{
+	content: '\e72e';
+}
+
+/*用户设置*/
+.icon_usermsg:before{
+	content: '\e60b';
+}

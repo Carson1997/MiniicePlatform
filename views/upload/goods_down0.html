@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="../../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../../js/public/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/layui_me.css" />
+		<script src="../../js/public/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/public/zjl_public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/public.css" />
+		<script src="../../js/public/publicDataHandle.js" type="text/javascript" charset="utf-8"></script>
+
+		<style>
+			.layui-table,
+			.layui-table-view {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="layui-fluid">
+
+			<div class="layui-card myBorder">
+				<div class="divPad">
+					<div class="layui-inline myTitle mr15">我的商品</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">维护商品类型：</label>
+						<div class="layui-form layui-input-inline" style="width: 120px;">
+							<select name="interest" lay-filter="sel" lay-event="sel">
+								<option value="0" checked>待维护商品</option>
+								<option value="1">已维护商品 </option>
+							</select>
+						</div>
+					</div>
+					<button class="layui-btn layui-btn-sm" id="dl1">导出</button>
+				</div>
+
+				<table lay-filter="demo" id="myTable"></table>
+			</div>
+
+			<div class="layui-card myBorder">
+				<div class="divPad">
+					<div class="layui-inline myTitle mr15">竞品</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">维护商品类型：</label>
+						<div class="layui-form layui-input-inline" style="width: 120px;">
+							<select name="interest" lay-filter="selJP" lay-event="sel">
+								<option value="0" checked>待维护商品</option>
+								<option value="1">已维护商品 </option>
+							</select>
+						</div>
+					</div>
+					<button class="layui-btn layui-btn-sm" id="dl2">导出</button>
+				</div>
+
+				<table lay-filter="demoJP" id="myTableJP"></table>
+			</div>
+			
+			<!-- <div class="layui-card myBorder">
+				<div class="divPad">
+				     <div class="layui-inline myTitle mr15">数据上传</div>
+					 <div class="layui-inline">
+					 	<label class="layui-form-label">数据商品类型：</label>
+					 	<div class="layui-form layui-input-inline" style="width: 120px;">
+					 		<select name="interest" lay-filter="selUp" lay-event="sel">
+								<option value=""></option>
+					 			<option value="my">我的商品</option>
+					 			<option value="competitor">竞品</option>
+					 		</select>
+					 	</div>
+						<input type="file" id="file"/>
+						<button class="layui-btn layui-btn-sm" id="dl3">上传</button>
+					 </div>
+				</div>
+				
+				<table lay-filter="demoUp" id="myTableUp"></table>
+			</div> -->
+
+			<div class="myFoot">广东小冰火人网络科技有限公司 版权所有</div>
+
+		</div>
+
+	</body>
+
+
+	<!-- <script type="text/html" id="toolbarDemo">
+		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength" >导出</button>
+	</script>
+
+	<script type="text/html" id="toolbarDemoJP">
+		<button class="layui-btn layui-btn-sm" lay-event="getCheckLength" >导出</button>
+	</script> -->
+
+	<script src="../../js/upload/goods_down.js"></script>
+
+</html>

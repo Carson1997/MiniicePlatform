@@ -1,0 +1,399 @@
+/*韬 我的公共类css*/
+
+.tao-container{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	color: #333333;
+}
+
+.tao-header{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background: #FAFAFA;
+	box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+	z-index: 999;
+}
+
+.tao-header-row{
+	position: relative;
+	height: 40px;
+}
+
+.tao-header-icon{
+	position: relative;
+	float: left;
+	width: 34px;
+	height: 34px;
+	margin-top: 3px;
+	text-align: center;
+	line-height: 34px;
+	font-size: 18px;
+}
+
+.tao-header-name {
+	position: relative;
+	float: left;
+	height: 34px;
+	text-align: center;
+	line-height: 34px;
+	margin-top: 3px;
+	font-size: 18px;
+}
+
+.tao-header-select{
+	position: relative;
+	float: right;
+	width: 100px;
+	height: 30px;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 50px;
+	border: 1px solid #CCCCCC;
+	background: #FAFAFA;
+	text-align: center;
+	text-align-last: center;
+}
+
+/*时间选择器*/
+.tao-header-timeBox {
+	position: absolute;
+    left: 10px;
+	z-index: 1;
+	height: 40px;
+}
+
+.clear {
+	clear: both;
+}
+/*时间选择器*/
+
+/* .c-h-2 {
+	padding-bottom: 5px;
+}
+
+.selectShow {
+	position: relative;
+    float: right;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.calendar{
+  	position: relative;
+  	float: left;
+  	width: 30px;
+  	height: 30px;
+  	line-height: 30px;
+  	text-align: center;
+}
+
+.calendar-msg{
+	position: relative;
+  	float: left;
+  	height: 30px;
+  	line-height: 30px;
+  	text-align: center;
+}
+
+.dateAll{
+	position: relative;
+	float: left;
+	height: 30px;
+	margin-top: 5px;
+}
+
+.word{
+	position: relative;
+	float: left;
+	width: 70px;
+	height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.word:nth-child(1){
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
+ 	border: solid 1px #CCCCCC;
+}
+
+.word:nth-child(2){
+ 	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.word:nth-child(3){
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.word:hover {
+	background: rgba(237, 109, 0, .7);
+	color: rgb(255,255,255);
+}
+.wordClick {
+    color: rgb(255,255,255);
+	background: #ED6D00 !important;
+} */
+
+
+
+/*时间选择器-end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.c-h-timeBox{
+	position: relative;
+	float: right;
+	height: 40px;
+}
+
+
+/*头部*/
+.c-head {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background: #FAFAFA;
+	box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+	z-index: 999;
+}
+
+.c-h-1 {
+	position: relative;
+	height: 40px;
+}
+
+.c-h-icon {
+	position: relative;
+	float: left;
+	width: 34px;
+	height: 34px;
+	margin-top: 3px;
+	text-align: center;
+	line-height: 34px;
+	font-size: 20px;
+	color: #757575;
+}
+
+.c-h-name {
+	position: relative;
+	float: left;
+	height: 34px;
+	text-align: center;
+	line-height: 34px;
+	margin-top: 3px;
+	color: #757575;
+	font-size: 20px;
+}
+
+.c-h-select{
+	position: relative;
+	float: right;
+	width: 100px;
+	height: 30px;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 50px;
+	border: 1px solid #CCCCCC;
+	background: #FAFAFA;
+	text-align: center;
+	text-align-last: center;
+	color: #757575;
+}
+
+/*身体盒子*/
+.c-p-1,
+.c-p-2,
+.c-p-3,
+.c-p-4,
+.c-p-5,
+.c-p-6,
+.c-p-7,
+.c-p-8,
+.c-p-9 {
+	position: relative;
+	float: left;
+	width: calc(100% - 40px);
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+
+/*每一块的表头*/
+
+.c-p-title {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.title-name {
+	position: relative;
+	float: left;
+	height: 34px;
+	margin-top: 8px;
+	margin-left: 15px;
+	text-align: center;
+	line-height: 34px;
+	font-size: 16px;
+	color: #014983;
+	font-weight: bold;
+}
+
+
+/*每一块的表身*/
+
+.c-p-body {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: calc(100% - 50px);
+}
+
+
+
+
+
+.loading-box{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background: white;
+}
+
+svg {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	margin-top: -50px;
+	margin-left: -50px;
+	display: inline-block;
+}
+
+.click-card{
+	border-bottom: 3px solid #ED6D00 !important;
+	box-shadow: 0 0 3px 3px rgb(241, 241, 241) inset;
+}
+
+.loading-div {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, .85);
+	z-index: 10000001;
+	left: 0;
+	top: 0;
+}
+
+.loadingInner {
+	position: absolute;
+	/* width: 80%;
+	height: 80%;
+	left: 22%;
+	top: 35%; */
+	width: 100px;
+	height: 100px;
+	left: 0;
+	right: 0;
+	bottom:0;
+	top:0;
+	margin: auto;
+}
+
+.disNone {
+	display: none;
+}
+
+.sLevelwordClick {
+    color: rgb(255,255,255) !important;
+    background: #ED6D00 !important;
+}
+
+/* .dateAll {
+	position: relative;
+}
+
+.select {
+	border: solid 1px lightgray;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.datePicker {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0 !important;
+	height: 0 !important;
+	z-index: -1;
+	padding-top: 10px;
+}
+
+.datePicker input {
+	width: 0 !important;
+	height: 0 !important;
+	border: none;
+}
+
+.el-input__icon {
+	display: none;
+}
+
+.el-popper[x-placement^=bottom] {
+	margin-top: 0px;
+}
+
+.popper__arrow {
+	display: none !important;
+}
+
+.el-date-editor {
+	width: 0 !important;
+}
+
+.el-date-table td.today span {
+	color: #C0C4CC;
+    font-weight: 600;
+} */
+
+.showBox {
+	cursor: pointer;
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>竞品分析</title>
+		<link rel="stylesheet" type="text/css" href="../../layuiadmin/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../js/public/element-ui/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/sell/comprehensive.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/zjl_public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/public/layui_me.css" />
+
+		<script src="../../js/public/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../layuiadmin/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/config.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../../js/public/xm-select/xm-select.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- 日期有关 -->
+		<script src="../../js/public/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/element-ui/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/public/publicDataHandle.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- echarts -->
+		<script src="../../js/public/echarts/echarts.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- 折线图 -->
+		<script src="../../js/public/echarts/polygonal.js" type="text/javascript" charset="utf-8"></script>
+
+		<style type="text/css">
+			.layui-col-xs6 .layui-form-select dl {
+				right: 0;
+				left: auto;
+			}
+
+			xm-select>.xm-body .xm-option-content {
+				overflow: inherit;
+			}
+
+			.disabled {
+				pointer-events: none;
+				cursor: default;
+			}
+		</style>
+	</head>
+	<body class="conbody">
+
+		<div id="vue">
+
+			<div class="layui-row fixedTitle">
+				<i class="tao-header-icon iconfont icon_nav_allAnalysis"></i> <span class="tao-header-name">竞品分析</span>
+
+				<div class="layui-row bg-white  layui-col-space10" style="padding: 0 15px;">
+					<div class="layui-col-md1" style="width: 300px;">
+						<label class="layui-form-label">日期区间：</label>
+						<div class="dateAll floatLeft">
+							<div class="dateArea">
+								<span class="word wordClick" data-type="date" v-on:click="selectLis('daterange', 1)">日</span>
+								<span class="word" data-type="week" v-on:click="selectLis('week', 7)">周</span>
+								<span class="word" data-type="month" v-on:click="selectLis('monthrange', 31)">月</span>
+								<div class="clear"></div>
+							</div>
+							<div class="datePicker" id="datePicker1">
+								<el-date-picker :picker-options="pickOption" popper-class="aaa" v-model="daterange" class="dateInput" type="daterange"
+								 value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+								</el-date-picker>
+								<!-- 	<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+								 type="week" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+								 style="width: 70px;height: 0;"> -->
+								<el-date-picker :picker-options="pickOption" id="el-week" popper-class="aaa" v-model="dateValue" class="dateInput"
+								 type="daterange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-on:change="dateClick($event)"
+								 style="width: 70px;height: 0;">
+								</el-date-picker>
+								<el-date-picker :picker-options="pickOptionMonth" id="el-monthrange" popper-class="aaa" v-model="monthrange"
+								 class="dateInput" type="monthrange" value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期"
+								 v-on:change="dateClick($event)" style="width: 70px;height: 0;">
+								</el-date-picker>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="layui-col-md1 layui-col-xs12" style="width: 250px;">
+						<div class="selectShow floatLeft">
+							<span class="iconfont calendar icon_calendar_icon"></span>
+							<span class="calendar-msg">{{ selectDateShow }}</span>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs8" style="width: 270px;">
+						<label class="layui-form-label">我的商品：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-goods1" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs8">
+						<label class="layui-form-label">竞品1：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-goods2" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs8">
+						<label class="layui-form-label">竞品2：</label>
+						<div class="layui-input-inline  layui-col-xs8">
+							<div id="xm-goods3" class="xm-select-demo"></div>
+						</div>
+					</div>
+					<div class="layui-col-md2 layui-col-xs8">
+						<label class="layui-form-label">平台：</label>
+						<div class="layui-input-inline layui-col-xs8">
+							<div id="xm-platform" class="xm-select-demo"></div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="titleIcon" @click="clickTitleIcon">
+					<i class="layui-icon layui-icon-up"></i>
+				</div>
+			</div>
+
+			<div class="layui-fluid">
+
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+
+							<div class="layui-row layui-col-space15">
+								<div class="layui-col-md2 layui-col-xs6">
+									<span class="myTitle">商品趋势</span>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+
+					<div class="layui-col-md12">
+						<div class="layui-card layui-row" style="border-right: 1px solid #CCCCCC;">
+
+							<div class="layui-col-md3 layui-col-xs6 myBorderHeZi selectHezi" data="payment_amt">
+								<div class="heZiText">支付金额(元)</div>
+								<div class="heZiNumber" v-for="(i,d) in payment_amt">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="payment_qty">
+								<div class="heZiText">支付件数(件)</div>
+								<div class="heZiNumber" v-for="(i,d) in payment_qty">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="visitors">
+								<div class="heZiText">访客数(人)</div>
+								<div class="heZiNumber" v-for="(i,d) in visitors">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="shopping_cart">
+								<div class="heZiText">加购人数(人)</div>
+								<div class="heZiNumber" v-for="(i,d) in shopping_cart">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6 myBorderHeZi cjd" data="payment_collect_qty">
+								<div class="heZiText">支付买家数(人)</div>
+								<div class="heZiNumber" v-for="(i,d) in payment_collect_qty" v-if="sel_pla != 2">
+									{{i.pla}}:{{i.data}}
+								</div>
+								<div class="heZiNumber" v-if="sel_pla == 2 && payment_collect_qty.length > 0">京东平台暂时不支持该指标</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6 myBorderHeZi" data="pay_conversion_rate">
+								<div class="heZiText">支付转化率(%)</div>
+								<div class="heZiNumber" v-for="(i,d) in pay_conversion_rate">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi cjd" data="customer_price">
+								<div class="heZiText">客单价(元)</div>
+								<div class="heZiNumber" v-for="(i,d) in customer_price" v-if="sel_pla != 2">
+									{{i.pla}}:{{i.data}}
+								</div>
+								<div class="heZiNumber" v-if="sel_pla == 2 && payment_collect_qty.length > 0">京东平台暂时不支持该指标</div>
+							</div>
+							<div class="layui-col-md3 layui-col-xs6  myBorderHeZi" data="unit_price">
+								<div class="heZiText">件单价(元)</div>
+								<div class="heZiNumber" v-for="(i,d) in unit_price">
+									{{i.pla}}:{{i.data}}
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+							<div class="echarts_div layim-hide tips">
+								<div style="margin:auto;width: 100px;;position: absolute;left: 0;right: 0;top:50px;">
+									<img src="../../img/no.png" style="width: 100%;" />
+									<div style="text-align: center;">请先选择商品</div>
+								</div>
+							</div>
+
+							<div class="echarts_div" id="echart_goodsTrend"></div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="layui-row mt15" v-show="tarShow">
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder divPad">
+
+							<div class="layui-row layui-col-space15">
+								<div class="layui-col-md3 layui-col-xs12">
+									<span class="myTitle">流量来源趋势</span>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-md-offset3 layui-col-lg2 layui-col-lg-offset5">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select1" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">指标：</label>
+										<div id="xm-select1" class="xm-select-demo floatRight" style="width: 150px;"></div>
+									</div>
+								</div>
+
+								<div class="layui-col-md3 layui-col-xs8 layui-col-lg2">
+									<!-- <div class="layui-form">
+										<div class="layui-input-inline layui-col-xs12">
+											<div id="xm-select2" class="xm-select-demo"></div>
+										</div>
+									</div> -->
+									<div style="width: 200px;" class="floatRight">
+										<label class="layui-form-label floatLeft">指标：</label>
+										<div id="xm-select2" class="xm-select-demo floatRight" style="width: 150px;"></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="layui-col-md12">
+						<div class="layui-card myBorder" style="border-top: 0;">
+							<div class="echarts_div layim-hide tips">
+								<div style="margin:auto;width: 100px;position: absolute;left: 0;right: 0;top:50px;">
+									<img src="../../img/no.png" style="width: 100%;" />
+									<div style="text-align: center;">请先选择商品</div>
+								</div>
+							</div>
+
+							<div class="echarts_div layim-hide tips2">
+								<div style="margin:auto;width: 100px;position: absolute;left: 0;right: 0;top:50px;">
+									<img src="../../img/no.png" style="width: 100%;" />
+									<div style="text-align: center;">该商品来源暂未监控</div>
+								</div>
+							</div>
+
+							<div class="echarts_div" id="echart_sourceTrend"></div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			
+			<div class="myFoot">广东小冰火人网络科技有限公司 版权所有</div>
+		</div>
+	</body>
+
+	<script src="../../js/jingpin/jp_analysis.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 	<script src="../../js/jingpin/jp_analysis_en.js" type="text/javascript" charset="utf-8"></script>
+ -->
+</html>

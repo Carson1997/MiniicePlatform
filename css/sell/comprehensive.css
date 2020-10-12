@@ -1,0 +1,698 @@
+.tao-container{
+	float: left;
+	overflow: auto;
+}
+
+.tao-header-row:nth-child(2){
+	padding-right: 10px;
+}
+
+.refreshTime{
+	position: relative;
+    float: left;
+    width: 100px;
+    height: 30px;
+	margin-top: 5px;
+	margin-left: 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #ED6D00;
+    color: white;
+}
+
+/*身体盒子*/
+.c-p-1,
+.c-p-2,
+.c-p-3,
+.c-p-4,
+.c-p-5,
+.c-p-6,
+.c-p-7,
+.c-p-8,
+.c-p-9{
+	top: 80px;
+}
+
+.c-p-1{
+	height: 250px;
+}
+
+
+.c-p-2{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 250px;
+}
+
+/*我的店铺*/
+.c-data-shop{
+	position: relative;
+	float: left;
+	width: calc(33.3333333333333333% - 13.3333333333333333px);
+	height: 100%;
+	margin-right: 20px;
+	background: white;
+	border: 1px solid #CCCCCC;
+	overflow: auto;
+}
+
+/*我的店铺*/
+.c-data-month{
+	position: relative;
+	float: left;
+	/* width: calc(33.3333333333333333% - 13.3333333333333333px); */
+	width: 100%;
+	margin-right: 20px;
+	height: 100%;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+
+/*我的店铺*/
+.c-data-year{
+	position: relative;
+	float: left;
+	/* width: calc(33.3333333333333333% - 13.3333333333333333px); */
+	width: 100%;
+	height: 100%;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+
+
+.title-data{
+	position: relative;
+	float: right;
+	height: 34px;
+	margin-top: 8px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 34px;
+	font-size: 14px;
+}
+
+.c-p-icon{
+    position: relative;
+    float: right;
+    width: 34px;
+    height: 34px;
+    margin-top: 8px;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 24px;
+}
+
+.shop-body-small{
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 50%;
+}
+
+.small-1{
+	color: #009BEB;
+}
+
+.small-1,
+.small-2,
+.small-3{
+	position: relative;
+	float: left;
+	width: calc(100% - 10%);
+	margin-top: 5px;
+	margin-left: 10%;
+	line-height: 30px;
+	white-space: nowrap;
+	
+}
+
+.small-icon{
+	position: relative;
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-top: 5px;
+	text-align: center;
+	line-height: 20px;
+}
+
+.small-name{
+	position: relative;
+	float: left;
+	height: 20px;
+	margin-top: 5px;
+	text-align: center;
+	line-height: 20px;
+}
+
+.small-second{
+	font-size: 18px;
+}
+
+.small-second,
+.small-third{
+	position: relative;
+	float: left;
+	height: 20px;
+	margin-top: 5px;
+	margin-left: 20px;
+	text-align: center;
+	line-height: 20px;
+}
+.small-third{
+	white-space: nowrap;
+	font-size: 12px;
+	color: #999999;
+}
+.small-ratio-icon{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	font-size: 16px;
+}
+
+.c-data-month .c-p-body,
+.c-data-year .c-p-body{
+	overflow: hidden;
+}
+
+.c-p-switch-box{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    right: 0px;
+    white-space: nowrap;
+    transition: right 0.5s;
+}
+
+
+.c-p-body-small{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.switch-box{
+	position: absolute;
+	left: 0px;
+	bottom: 5px;
+	width: 100%;
+	height: 20px;
+	text-align: center;
+}
+
+.switch-btn{
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 8px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 50px;
+	background: rgba(0,0,0,0.1);
+}
+
+.switch-btn:hover{
+	cursor: pointer;
+	background: rgba(0,0,0,0.5);
+}
+
+
+.b-big{
+	position: relative;
+	float: left;
+	width: 40%;
+	height: 100%;
+}
+
+.b-bigbox{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 50%;
+}
+
+.b-bigbox .b-data:first-child{
+	position: relative;
+	float: left;
+	width: calc(100% - 10%);
+	height: 20px;
+	top: 25%;
+	margin-top: -10px;
+	margin-left: 10%;
+}
+
+.b-bigbox .b-data:last-child{
+	position: relative;
+	float: left;
+	width: calc(100% - 10%);
+	height: 20px;
+	top: 30%;
+	margin-left: 10%;
+}
+
+.b-data-icon{
+	position: relative;
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.b-data-name{
+	position: relative;
+	float: left;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	color: #009BEB;
+}
+
+.b-data-msg{
+	position: relative;
+	float: left;
+	height: 20px;
+	margin-left: 15px;
+	text-align: center;
+	line-height: 20px;
+	font-size: 18px;
+}
+
+.target-charts{
+	position: relative;
+	float: left;
+	width: 60%;
+	height: 100%;
+}
+
+.c-p-3{
+	height: 450px;
+	margin-top: 20px;
+}
+
+.c-shop-1{
+	position: relative;
+	float: left;
+	width: calc(50% - 10px);
+	height: 100%;
+	margin-right: 10px;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+
+.c-shop-2{
+	position: relative;
+	float: left;
+	width: calc(50% - 10px);
+	height: 100%;
+	background: white;
+	margin-left: 10px;
+	border: 1px solid #CCCCCC;
+}
+
+.c-p-4{
+	margin-top: 20px;
+	height: 45%;
+}
+
+
+.region-box{
+	position: relative;
+	float: left;
+	height: 100%;
+}
+
+.region-box:nth-child(1){
+	width: 40%;
+	/* background: lawngreen; */
+}
+.region-box:nth-child(2){
+	width: 60%;
+}
+
+.service-body-small{
+	position: relative;
+	float: left;
+	width: calc(50% - 5px);
+	height: 33.33%;
+}
+
+.service-body-small:nth-child(1),
+.service-body-small:nth-child(3),
+.service-body-small:nth-child(5){
+	margin-right: 5px;
+}
+
+.service-body-small:nth-child(2),
+.service-body-small:nth-child(4),
+.service-body-small:nth-child(6){
+	margin-left: 5px;
+}
+
+.service-body-small .small-name{
+	font-size: 14px;
+}
+
+.service-body-small .small-second{
+	font-size: 16px;
+}
+.service-body-small .small-third{
+	font-size: 12px;
+}
+
+.c-cate-1{
+	position: relative;
+	float: left;
+	width: calc(50% - 10px);
+	height: 100%;
+	margin-right: 10px;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+
+.c-cate-2{
+	position: relative;
+	float: left;
+	width: calc(50% - 10px);
+	height: 100%;
+	background: white;
+	margin-left: 10px;
+	border: 1px solid #CCCCCC;
+}
+
+.c-p-5{	
+	height: 600px;
+	margin-bottom: 20px;
+}
+
+
+.c-market-1{
+	position: relative;
+	float: left;
+	width: calc(33.3333333333333333% - 13.3333333333333333px);
+	height: 100%;
+	margin-right: 20px;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+.c-market-2{
+	position: relative;
+	float: left;
+	width: calc(33.3333333333333333% - 13.3333333333333333px);
+	height: 100%;
+	margin-right: 20px;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+.c-market-3{
+	position: relative;
+	float: left;
+	width: calc(33.3333333333333333% - 13.3333333333333333px);
+	height: 100%;
+	background: white;
+	border: 1px solid #CCCCCC;
+}
+
+
+.c-p-body{
+	overflow: auto;
+}
+
+
+.c-table,
+.c-t-box table,
+.c-map-table table{
+	margin: 0;
+	padding: 0;
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.c-t-thead tr,
+.c-t-tbody tr{
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.c-t-thead tr td{
+	color: #009BEB;
+}
+
+.c-t-thead tr td,
+.c-t-tbody tr td{
+	position: relative;
+	display: inline-block;
+	height: 50px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+	
+}
+
+.c-t-thead tr td:nth-child(1),
+.c-t-tbody tr td:nth-child(1){
+	width: 50px;
+	text-align: center;
+	line-height: 40px;
+	
+}
+.c-t-thead tr td:nth-child(2){
+	line-height: 40px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.c-t-thead tr td:nth-child(2),
+.c-t-tbody tr td:nth-child(2){
+	width:calc(100% - 200px);
+	text-align: left;
+	
+}
+
+.c-t-thead tr td:nth-child(3),
+.c-t-tbody tr td:nth-child(3){
+	width: 150px;
+	text-align: center;
+	line-height: 40px;
+}
+
+.c-t-tbody tr td:nth-child(2) a{
+	position: relative;
+	float: left;
+	width: calc(100% - 40px);
+	overflow: hidden;
+	display: -webkit-box;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.c-t-tbody tr td:nth-child(2) img{
+	position: relative;
+	float: left;
+	width: 40px;
+	height: 40px;
+}
+
+.c-map-charts{
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.c-map-table{
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+
+.c-m-thead tr,
+.c-m-tbody tr{
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.c-m-thead tr td{
+	color: #009BEB;
+}
+
+.c-m-thead tr td,
+.c-m-tbody tr td{
+	position: relative;
+	display: inline-block;
+	height: 50px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 50px;
+	vertical-align: middle;
+}
+
+.c-m-thead tr td:nth-child(1),
+.c-m-tbody tr td:nth-child(1){
+	width: 100px;
+	text-align: center;
+	
+}
+
+.c-m-thead tr td:nth-child(2),
+.c-m-tbody tr td:nth-child(2){
+	width:calc(100% - 30% - 100px);
+	text-align: center;
+	
+}
+
+.c-m-thead tr td:nth-child(3),
+.c-m-tbody tr td:nth-child(3){
+	width: 30%;
+	text-align: center;
+}
+
+
+
+.c-cate-data{
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 50%;
+}
+.c-cate-data img{
+	position: relative;
+	float: left;
+}
+
+.c-cate-msg{
+	position: relative;
+	float: left;
+	width: calc(100% - 200px);
+	height: 100%;
+}
+
+.msg-box{
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.msg-name{
+	position: relative;
+	float: left;
+	width: 45px;
+	height: 34px;
+	text-align: left;
+	line-height: 34px;
+	color: #999999;
+    font-size: 12px;
+}
+
+.msg-box:nth-child(1) .msg-name {
+    width: 100px;
+	color: #009BEB;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.msg-data{
+	position: relative;
+	float: left;
+	width: calc(100% - 100px);
+	height: 34px;
+	text-align: left;
+	line-height: 34px;
+	font-size: 18px;
+}
+
+.msg-box:nth-child(3) .msg-data{
+	color: #999999;
+	font-size: 12px;
+}
+
+.c-p-5 table{
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: 100%
+}
+
+.c-p-5 table td{
+	position: relative;
+	display: inline-block;
+	height: 50px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+
+}
+
+.c-p-5 table td:nth-child(1){
+	width: 50px;
+	line-height: 50px;
+}
+
+.c-p-5 table thead td:nth-child(2){
+	line-height: 50px;
+}
+
+.c-p-5 .c-market-1 table tbody td:nth-child(2),
+.c-p-5 .c-market-2 table tbody td:nth-child(2){
+	line-height: 50px;
+}
+
+.c-p-5 table td:nth-child(2){
+	width: calc(100% - 200px);
+	text-align: left;
+}
+
+.c-p-5 table td:nth-child(2) img{
+	position: relative;
+	float: left;
+}
+
+.c-p-5 table td:nth-child(2) div{
+	position: relative;
+	float: left;
+	width: calc(100% - 40px);
+	height: 100%;
+	line-height: 40px;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+	
+}
+
+.c-p-5 table td:nth-child(3){
+	width: 150px;
+	line-height: 50px;
+}
+
+.c-p-5 table thead td:nth-child(1),
+.c-p-5 table thead td:nth-child(3),
+.c-p-5 table tbody td:nth-child(1),
+.c-p-5 table tbody td:nth-child(3){
+	text-align: center;
+}
+
+.c-market-2 table td:nth-child(2) img{
+	width: 40px;
+	height: 40px;
+}
+
+.c-market-1 table td:nth-child(2) img{
+	width: 40px;
+	height: 20px;
+	margin-top: 10px;
+}
+
+.c-market-3 table td:nth-child(2) img{
+	width: 40px;
+	height: 40px;
+}
